@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    Work
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/work.css' %}">
+{% endblock %}
+
+{% block site_content %}
+
+    <div class="display-container">
+        <div class="image">
+            <img src="{% static 'images/contrast.jpg' %}" alt="contrast photo">
+
+            <div class="text"><h3>Still life</h3></div>
+        </div>
+
+        <div class="image">
+            <img src="{% static 'images/dandelion.jpg' %}" alt="dandelion photo">
+
+            <div class="text">
+                <h3>Still life</h3>
+            </div>
+
+
+        </div>
+
+
+        <div class="image">
+            <img src="{% static 'images/growth.jpg' %}" alt="growth photo">
+
+            <div class="text">
+                <h3>Still life</h3>
+            </div>
+        </div>
+
+
+        <div class="image">
+            <img src="{% static 'images/reflections.jpg' %}" alt="reflections photo">
+
+            <div class="text">
+                <h3>Still life</h3>
+            </div>
+        </div>
+
+
+        <div class="image">
+            <img src="{% static 'images/relax.jpg' %}" alt="relax photo">
+
+            <div class="text">
+                <h3>Still life</h3>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
