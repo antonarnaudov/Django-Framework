@@ -15,7 +15,9 @@
         <div class="image">
             <img src="{% static 'images/contrast.jpg' %}" alt="contrast photo">
 
-            <div class="text"><h3>Still life</h3></div>
+            <div class="text">
+                <h3>Still life</h3>
+            </div>
         </div>
 
         <div class="image">
@@ -54,9 +56,21 @@
                 <h3>Still life</h3>
             </div>
         </div>
+
+        {% for photo in photos %}
+            <div class="image">
+                {#    TODO: Implement the watermarked_photo creation and change it in the img    #}
+
+                <img src="{% url 'public file' photo.watermarked_photo.url %}" alt="{{ photo.name }}">
+
+                <div class="text">
+                    <h3>{{ photo.category }}</h3>
+                </div>
+
+                <a href="{% url 'edit-photo' photo.id %}">Edit</a>
+                <a href="{% url 'delete-photo' photo.id %}">Delete</a>
+            </div>
+        {% endfor %}
+
     </div>
-
-
-
-
 {% endblock %}

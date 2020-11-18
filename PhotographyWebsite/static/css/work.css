@@ -75,10 +75,12 @@
     width: calc(100% - (20px * 2));
     margin: 20px;
     filter: grayscale(50%);
-    transition: opacity ease 200ms;
+    /*filter: brightness(110%);*/
+    /*filter: blur(1px);*/
+    transition: opacity ease 800ms;
 }
 
-.text {
+.image .text {
     bottom: 454px;
     position: relative;
     margin: auto;
@@ -88,11 +90,15 @@
 
 }
 
+.text h3 {
+    font-family: Archivo Black, serif;
+}
+
 .image img:hover {
     filter: none;
 }
 
 .image img:hover ~ .text {
-    position: relative;
-    display: none;
+    opacity: 0;
 }
+

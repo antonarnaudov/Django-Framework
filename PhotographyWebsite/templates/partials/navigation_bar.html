@@ -1,7 +1,7 @@
 <nav class="navbar">
-    <a href="#" id="logo" class="navbar-brand">Joana</a>
+    <a href="{% url 'work page' %}" id="logo" class="navbar-brand">Joana</a>
     <ul class="pages">
-        <li><a href="#">Work</a></li>
+        <li><a href="{% url 'work page' %}">Work</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
     </ul>
@@ -10,4 +10,9 @@
         <li><a href="#">Log In</a></li>
         <li><a href="#">Register</a></li>
     </ul>
+
+    <ul>
+        <li><a href="{% url 'add-photo' %}"><i class="fas fa-plus" style="font-size: 35px"></i></a></li>
+    </ul>
+
 </nav>
