@@ -13,7 +13,7 @@ def add_or_edit_photo(request, photo, template_name):
         return render(request, template_name, context)
     else:
         # TODO: Implement the watermarked_photo creation logic.
-        # photo.watermarked_photo.path = ''
+
         form = PhotosForm(request.POST, request.FILES, instance=photo)
 
         if form.is_valid():
