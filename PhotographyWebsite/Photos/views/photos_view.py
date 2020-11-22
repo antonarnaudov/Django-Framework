@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from Photos.common_functionality.path_functions import clean_files_from_path
 from Photos.forms.photos_form import PhotosForm
 from Photos.models import Photos
 
@@ -12,11 +13,13 @@ def add_or_edit_photo(request, photo, template_name):
         }
         return render(request, template_name, context)
     else:
-        # TODO: Implement the watermarked_photo creation logic.
+        (old_image, old_watermarked_image) = (photo.original_photo, photo.watermarked_photo)
 
         form = PhotosForm(request.POST, request.FILES, instance=photo)
 
         if form.is_valid():
+            if old_image:
+                clean_files_from_path(old_image.path, old_watermarked_image.path)
             form.save()
             return redirect('work page')
 
@@ -38,5 +41,7 @@ def edit_photo(request, pk):
 
 def delete_photo(request, pk):
     photo = Photos.objects.get(pk=pk)
+
+    clean_files_from_path(photo.original_photo.path, photo.watermarked_photo.path)
     photo.delete()
     return redirect('work page')

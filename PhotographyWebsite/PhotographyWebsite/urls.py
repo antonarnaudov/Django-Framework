@@ -26,4 +26,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Photos.urls'))
 ] + media_files
-# TODO: ADD media_files to urlpatterns

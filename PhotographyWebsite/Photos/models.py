@@ -28,10 +28,10 @@ class Photos(models.Model):
         buffer = BytesIO()
         im_pil.save(buffer, format='jpeg')
 
-        image_png = buffer.getvalue()
+        image = buffer.getvalue()
 
         file_name = f'watermarked_{self.name.lower()}.jpeg'
 
-        self.watermarked_photo.save(file_name, ContentFile(image_png), save=False)
+        self.watermarked_photo.save(file_name, ContentFile(image), save=False)
 
         super().save(*args, **kwargs)
