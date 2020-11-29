@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static%}
+{% load static %}
 
 {% block title %}Add Photo{% endblock %}
 
@@ -9,7 +9,22 @@
 {% block site_content %}
     <form action="{% url 'add-photo' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
+
+        <label for="original_photo">{{ form.original_photo.label }}</label>
+        {{ form.original_photo }}
+
+        <label for="name">{{ form.name.label }}</label>
+        {{ form.name }}
+
+        <label for="category">{{ form.category.label }}</label>
+        {{ form.category }}
+
+        <label for="price">{{ form.price.label }}</label>
+        {{ form.price }}
+
         <button>Add</button>
     </form>
+
+    <script src="{% static 'js/category.js' %}"></script>
+
 {% endblock %}

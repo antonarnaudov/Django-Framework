@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Edit Category
+{% endblock %}
+
+{% block site_content %}
+<div class="popup-background">
+    <div class="popup-window">
+        <div class="close" style="cursor: pointer;">
+            <i class="far fa-times-circle" style="font-size: 40px;"></i>
+        </div>
+
+        <form action="{% url 'edit-category' category.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="image">{{ form.image.label }}</label>
+            {{ form.image }}
+            <label for="category">{{ form.category.label }}</label>
+            {{ form.category }}
+            <button>Edit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

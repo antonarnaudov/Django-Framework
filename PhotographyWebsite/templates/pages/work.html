@@ -10,65 +10,70 @@
 {% endblock %}
 
 {% block site_content %}
-
-    {% for photo in photos %}
-        <div class="image">
-            <img src="{% url 'public file' photo.watermarked_photo.url %}" alt="{{ photo.name }}">
-
-            <div class="text">
-                <h3>{{ photo.category }}</h3>
-            </div>
-
-            <a href="{% url 'edit-photo' photo.id %}">Edit</a>
-            <a href="{% url 'delete-photo' photo.id %}">Delete</a>
-        </div>
-    {% endfor %}
-
     <div class="display-container">
-        <div class="image">
-            <img src="{% static 'images/contrast.jpg' %}" alt="contrast photo">
+        {% for category in categories %}
+            <div class="category">
+                <a href="{% url 'category photos' category.category category.id %}">
+                    <img src="{% url 'public file' category.image.url %}" alt="{{ category.category }}">
 
-            <div class="text">
-                <h3>Still life</h3>
+                    <div class="text">
+                        <h3>{{ category.category }}</h3>
+                    </div>
+                </a>
+
+
+                <a href="{% url 'edit-category' category.id %}" id="edit-category"><i class="fas fa-edit"
+                                                                                      style="font-size:25px; color:purple; cursor: pointer;"></i></a>
+                <a href="{% url 'delete-category' category.id %}" id="delete-category"><i class="fas fa-trash-alt"
+                                                                                          style="font-size:25px; color:red; cursor: pointer;"></i></a>
+
             </div>
-        </div>
+        {% endfor %}
 
-        <div class="image">
-            <img src="{% static 'images/dandelion.jpg' %}" alt="dandelion photo">
-
-            <div class="text">
-                <h3>Still life</h3>
-            </div>
-
-
-        </div>
-
-
-        <div class="image">
-            <img src="{% static 'images/growth.jpg' %}" alt="growth photo">
-
-            <div class="text">
-                <h3>Still life</h3>
-            </div>
-        </div>
-
-
-        <div class="image">
-            <img src="{% static 'images/reflections.jpg' %}" alt="reflections photo">
-
-            <div class="text">
-                <h3>Still life</h3>
-            </div>
-        </div>
-
-
-        <div class="image">
-            <img src="{% static 'images/relax.jpg' %}" alt="relax photo">
-
-            <div class="text">
-                <h3>Still life</h3>
-            </div>
-        </div>
+{#        <div class="category">#}
+{#            <img src="{% static 'images/contrast.jpg' %}" alt="contrast photo">#}
+{##}
+{#            <div class="text">#}
+{#                <h3>Still life</h3>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="category">#}
+{#            <img src="{% static 'images/dandelion.jpg' %}" alt="dandelion photo">#}
+{##}
+{#            <div class="text">#}
+{#                <h3>Still life</h3>#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="category">#}
+{#            <img src="{% static 'images/growth.jpg' %}" alt="growth photo">#}
+{##}
+{#            <div class="text">#}
+{#                <h3>Still life</h3>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="category">#}
+{#            <img src="{% static 'images/reflections.jpg' %}" alt="reflections photo">#}
+{##}
+{#            <div class="text">#}
+{#                <h3>Still life</h3>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="category">#}
+{#            <img src="{% static 'images/relax.jpg' %}" alt="relax photo">#}
+{##}
+{#            <div class="text">#}
+{#                <h3>Still life</h3>#}
+{#            </div>#}
+{#        </div>#}
 
     </div>
 {% endblock %}

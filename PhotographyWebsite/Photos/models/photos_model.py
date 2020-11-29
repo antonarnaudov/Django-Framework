@@ -5,18 +5,19 @@ from PIL import Image
 from django.core.files.base import ContentFile
 from django.db import models
 
-
 # Create your models here.
 from Photos.common_functionality.watermarked_image_creator import create_watermarked_image
+from Photos.models.category_model import Category
 
 
 class Photos(models.Model):
     original_photo = models.ImageField(upload_to='private/original_photos')
     watermarked_photo = models.ImageField(upload_to='public/photos', blank=True)
+
     name = models.CharField(max_length=30, blank=False)
-    category = models.CharField(max_length=80, blank=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
     price = models.IntegerField(blank=False)
-    wishes = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         pil_img = Image.open(self.original_photo)

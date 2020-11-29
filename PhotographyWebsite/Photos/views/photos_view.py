@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 
 from Photos.common_functionality.path_functions import clean_files_from_path
 from Photos.forms.photos_form import PhotosForm
-from Photos.models import Photos
+from Photos.models.photos_model import Photos
+from Photos.models.wishes_model import Wishes
 
 
 def add_or_edit_photo(request, photo, template_name):
@@ -19,7 +20,8 @@ def add_or_edit_photo(request, photo, template_name):
 
         if form.is_valid():
             if old_image:
-                clean_files_from_path(old_image.path, old_watermarked_image.path)
+                if old_image != form.cleaned_data['original_photo']:
+                    clean_files_from_path(old_image.path, old_watermarked_image.path)
             form.save()
             return redirect('work page')
 
@@ -45,3 +47,11 @@ def delete_photo(request, pk):
     clean_files_from_path(photo.original_photo.path, photo.watermarked_photo.path)
     photo.delete()
     return redirect('work page')
+
+
+def wish_photo(request, pk):
+    photo = Photos.objects.get(pk=pk)
+    wish = Wishes()
+    wish.photo = photo
+    wish.save()
+    return redirect('category photos', photo.category.category, pk)

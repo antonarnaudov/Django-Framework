@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Work
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/work.css' %}">
+{% endblock %}
+
+{% block site_content %}
+    <h1 class="category_name">{{ category_name }}</h1>
+
+    <div class="display-container">
+        {% if photos %}
+            {% for photo in photos %}
+                <div class="image">
+                    <img src="{% url 'public file' photo.watermarked_photo.url %}" alt="{{ photo.name }}">
+
+                    <ul class="navbar">
+                        <li class="navbar-brand"><h3>{{ photo.name }}</h3></li>
+
+                        <li><a href="{% url 'edit-photo' photo.id %}">Edit</a></li>
+
+                        <li><a href="{% url 'delete-photo' photo.id %}">Delete</a></li>
+
+                        <li><p class="price">{{ photo.price }}$</p></li>
+
+                        <li>
+                            <a href="{% url 'wish' photo.id %}">
+                                <i class="far fa-heart" style="font-size:30px; cursor: pointer;"></i>
+                            </a>
+                        </li>
+
+                        <li><p>Wishes: {{ photo.wishes_set.count }}</p></li>
+
+                        <li><a href="#"><i class="fas fa-cart-plus" style="font-size:30px; cursor: pointer;"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <h1>This category is EMPTY</h1>
+        {% endif %}
+
+    </div>
+{% endblock %}
