@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
-from Photos.common_functionality.path_functions import clean_files_from_path
 from Photos.forms.category_form import CategoryForm
 from Photos.models.category_model import Category
+from common_functionality.path_functions import clean_files_from_path
 
 
 def add_or_edit_category(request, category, template_name):

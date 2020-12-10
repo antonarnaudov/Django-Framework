@@ -1,5 +1,8 @@
+{% load static %}
+
+
 <nav class="navbar">
-    <a href="{% url 'work page' %}" id="logo" class="navbar-brand">Joana</a>
+    <a href="{% url 'work page' %}" id="logo" class="navbar-brand" style="opacity: 100%">Joana</a>
     <ul class="pages">
         <li><a href="{% url 'work page' %}">Work</a></li>
         <li><a href="#">About</a></li>
@@ -7,16 +10,44 @@
     </ul>
 
     <ul class="authentication ml-auto">
-        <li><a href="#">Log In</a></li>
-        <li><a href="#">Register</a></li>
-    </ul>
+        {% if user.is_authenticated %}
+            {% if user.groups.all.0.name == 'Creator' %}
 
-    <ul>
-        <li><a href="{% url 'add-photo' %}"><i class="fas fa-plus" style="font-size: 35px; cursor: pointer;"></i></a>
-        </li>
-        <li><a href="{% url 'add-category' %}"><i class="fas fa-folder-plus"
-                                                  style="font-size:35px; cursor: pointer;"></i></a></li>
-        <li><a href="#"></a><i class="fas fa-shopping-cart" style="font-size:35px; cursor: pointer;"></i></li>
+                <li><a href="{% url 'add-photo' %}"><i class="fas fa-plus"
+                                                       style="font-size: 35px; cursor: pointer;"></i></a>
+                </li>
+                <li><a href="{% url 'add-category' %}"><i class="fas fa-folder-plus"
+                                                          style="font-size:35px; cursor: pointer;"></i></a></li>
+            {% else %}
+
+                <li><a href="{% url 'wishlist page' %}"><input type="image" id="myimage"
+                                                               src="{% static 'images/wishlist.png' %}"
+                                                               alt="wishlist"
+                                                               style="width:45px;height:35px; cursor: pointer;"/></a>
+                </li>
+                <li><a href="#"></a><i class="fas fa-shopping-cart" style="font-size:35px; cursor: pointer;"></i>
+                </li>
+            {% endif %}
+
+            <li>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: -101px;">
+                        <a class="dropdown-item" href="#">View Profile</a>
+                        <a class="dropdown-item" href="#">Edit Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout user' %}">Logout</a>
+                    </div>
+                </div>
+            </li>
+
+        {% else %}
+            <li><a href="{% url 'login user' %}">Login</a></li>
+            <li><a href="{% url 'register user' %}">Register</a></li>
+        {% endif %}
     </ul>
 
 </nav>

@@ -3,10 +3,12 @@ from os.path import join, isfile
 from django.conf import settings
 from django.http import HttpResponse
 
-from Photos.common_functionality.path_functions import fix_path
+from common_functionality.path_functions import fix_path
 
 
 # TODO: Implement the access logic once the profiles are done.
+
+
 def has_access():
     return True
 

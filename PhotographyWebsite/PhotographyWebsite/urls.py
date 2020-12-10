@@ -24,5 +24,6 @@ media_files = static(settings.MEDIA_URL, document_root=join(settings.MEDIA_ROOT,
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Photos.urls'))
+    path('', include('Photos.urls')),
+    path('auth/', include('Auth.urls'))
 ] + media_files

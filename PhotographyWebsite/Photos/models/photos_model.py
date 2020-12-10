@@ -6,8 +6,8 @@ from django.core.files.base import ContentFile
 from django.db import models
 
 # Create your models here.
-from Photos.common_functionality.watermarked_image_creator import create_watermarked_image
 from Photos.models.category_model import Category
+from common_functionality.watermarked_image_creator import create_watermarked_image
 
 
 class Photos(models.Model):

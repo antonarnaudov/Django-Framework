@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from Photos.common_functionality.path_functions import clean_files_from_path
 from Photos.forms.photos_form import PhotosForm
 from Photos.models.photos_model import Photos
 from Photos.models.wishes_model import Wishes
+from common_functionality.get_redirect_url import get_redirect_url
+from common_functionality.path_functions import clean_files_from_path
 
 
 def add_or_edit_photo(request, photo, template_name):
@@ -49,9 +51,16 @@ def delete_photo(request, pk):
     return redirect('work page')
 
 
+@login_required
 def wish_photo(request, pk):
-    photo = Photos.objects.get(pk=pk)
-    wish = Wishes()
-    wish.photo = photo
-    wish.save()
-    return redirect('category photos', photo.category.category, pk)
+    redirect_url = get_redirect_url(request.POST)
+    wish = Wishes.objects.filter(user_id=request.user.id, photo_id=pk).first()
+
+    if wish:
+        wish.delete()
+    else:
+        photo = Photos.objects.get(pk=pk)
+        wish = Wishes(user=request.user)
+        wish.photo = photo
+        wish.save()
+    return redirect(redirect_url)

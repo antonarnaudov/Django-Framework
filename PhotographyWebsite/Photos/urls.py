@@ -2,7 +2,7 @@ from django.urls import path
 
 from Photos.views.category_view import add_category, edit_category, delete_category
 from Photos.views.photos_view import add_photo, edit_photo, delete_photo, wish_photo
-from Photos.views.views import work, get_public_file, get_private_file, get_category_photos
+from Photos.views.views import work, get_public_file, get_private_file, get_category_photos, get_wishlist
 
 urlpatterns = [
     # Home page:
@@ -23,4 +23,5 @@ urlpatterns = [
 
     # Wishes:
     path('wish/<int:pk>/', wish_photo, name='wish'),
+    path('wishlist/', get_wishlist, name='wishlist page')
 ]

@@ -13,67 +13,22 @@
     <div class="display-container">
         {% for category in categories %}
             <div class="category">
-                <a href="{% url 'category photos' category.category category.id %}">
-                    <img src="{% url 'public file' category.image.url %}" alt="{{ category.category }}">
 
-                    <div class="text">
+                <a class="category-link" href="{% url 'category photos' category.category category.id %}">
+                    <div class="image">
+                        <img src="{% url 'public file' category.image.url %}" alt="{{ category.category }}">
+                        <div class="filter"></div>
                         <h3>{{ category.category }}</h3>
                     </div>
                 </a>
-
-
-                <a href="{% url 'edit-category' category.id %}" id="edit-category"><i class="fas fa-edit"
-                                                                                      style="font-size:25px; color:purple; cursor: pointer;"></i></a>
-                <a href="{% url 'delete-category' category.id %}" id="delete-category"><i class="fas fa-trash-alt"
-                                                                                          style="font-size:25px; color:red; cursor: pointer;"></i></a>
-
+                {% if user.groups.all.0.name == 'Creator' %}
+                    <a href="{% url 'edit-category' category.id %}" id="edit-category"><i class="fas fa-edit"
+                                                                                          style="font-size:25px; color:purple; cursor: pointer;"></i></a>
+                    <a href="{% url 'delete-category' category.id %}" id="delete-category"><i class="fas fa-trash-alt"
+                                                                                              style="font-size:25px; color:red; cursor: pointer;"></i></a>
+                {% endif %}
             </div>
         {% endfor %}
-
-{#        <div class="category">#}
-{#            <img src="{% static 'images/contrast.jpg' %}" alt="contrast photo">#}
-{##}
-{#            <div class="text">#}
-{#                <h3>Still life</h3>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <div class="category">#}
-{#            <img src="{% static 'images/dandelion.jpg' %}" alt="dandelion photo">#}
-{##}
-{#            <div class="text">#}
-{#                <h3>Still life</h3>#}
-{#            </div>#}
-{##}
-{##}
-{#        </div>#}
-{##}
-{##}
-{#        <div class="category">#}
-{#            <img src="{% static 'images/growth.jpg' %}" alt="growth photo">#}
-{##}
-{#            <div class="text">#}
-{#                <h3>Still life</h3>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div class="category">#}
-{#            <img src="{% static 'images/reflections.jpg' %}" alt="reflections photo">#}
-{##}
-{#            <div class="text">#}
-{#                <h3>Still life</h3>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{##}
-{#        <div class="category">#}
-{#            <img src="{% static 'images/relax.jpg' %}" alt="relax photo">#}
-{##}
-{#            <div class="text">#}
-{#                <h3>Still life</h3>#}
-{#            </div>#}
-{#        </div>#}
 
     </div>
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Work
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/photos.css' %}">
+{% endblock %}
+
+{% block site_content %}
+
+    <div class="display-container">
+        {% if wishlist %}
+            {% for photo in wishlist %}
+                <div class="image">
+                    <img src="{% url 'public file' photo.photo.watermarked_photo.url %}" alt="{{ photo.photo.name }}">
+
+                    <ul class="navbar">
+                        <li class="navbar-brand"><h3>{{ photo.photo.name }}</h3></li>
+
+                        <li><p class="price">{{ photo.photo.price }}$</p></li>
+                        <li>
+                            <a href="{% url 'wish' photo.photo.id %}">
+                                <i class="fas fa-heart" style="font-size:30px; cursor: pointer;"></i>
+                            </a>
+                        </li>
+
+                        <li><a href="#"><i class="fas fa-cart-plus" style="font-size:30px; cursor: pointer;"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <h1>Your Wishlist is empty!</h1>
+        {% endif %}
+
+    </div>
+{% endblock %}
