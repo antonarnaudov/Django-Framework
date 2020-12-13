@@ -2,7 +2,9 @@
 
 
 <nav class="navbar">
-    <a href="{% url 'work page' %}" id="logo" class="navbar-brand" style="opacity: 100%">Joana</a>
+    <a href="{% url 'work page' %}" id="logo" class="navbar-brand" style="opacity: 100%"><input type='image' id='logo'
+                                                                                                src='{% static 'images/website-logo.png' %}'
+                                                                                                alt='Logo'></a>
     <ul class="pages">
         <li><a href="{% url 'work page' %}">Work</a></li>
         <li><a href="#">About</a></li>
@@ -23,7 +25,7 @@
                 <li><a href="{% url 'wishlist page' %}"><input type="image" id="myimage"
                                                                src="{% static 'images/wishlist.png' %}"
                                                                alt="wishlist"
-                                                               style="width:45px;height:35px; cursor: pointer;"/></a>
+                                                               style="width:45px; height:35px; cursor: pointer; outline: none;"/></a>
                 </li>
                 <li><a href="#"></a><i class="fas fa-shopping-cart" style="font-size:35px; cursor: pointer;"></i>
                 </li>
@@ -37,8 +39,8 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: -101px;">
-                        <a class="dropdown-item" href="#">View Profile</a>
-                        <a class="dropdown-item" href="#">Edit Profile</a>
+                        <a class="dropdown-item" href="{% url 'view profile' user.id %}">View Profile</a>
+                        <a class="dropdown-item" href="{% url 'edit profile' user.id %}">Edit Profile</a>
                         <a class="dropdown-item" href="{% url 'logout user' %}">Logout</a>
                     </div>
                 </div>

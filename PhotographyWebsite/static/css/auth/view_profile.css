@@ -1,0 +1,32 @@
+.container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.content {
+    padding-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+.content li {
+    font-family: Poppins, serif;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-left: 0
+}
+
+.content p {
+    font-family: Poppins, serif;
+    font-weight: 600;
+    font-size: 24px;
+    /*padding-top: 10px;*/
+}

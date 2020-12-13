@@ -1,10 +1,9 @@
-# Create your views here.
 from django.contrib.auth import logout, authenticate, login
-# Create your views here.
+from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import redirect, render
 
-from Auth.forms import RegisterForm, LoginForm
+from Auth.forms import RegisterForm, LoginForm, EditDataForm
 from common_functionality.get_redirect_url import get_redirect_url
 
 
@@ -60,3 +59,53 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('work page')
+
+
+def view_user_profile(request, pk):
+    if request.user.id != pk:
+        logout(request)
+        return redirect('login user')
+
+    context = {
+        'profile': request.user
+    }
+    return render(request, 'auth/view_profile.html', context)
+
+
+def edit_user_profile(request, pk):
+    if request.user.id != pk:
+        logout(request)
+        return redirect('login user')
+
+    user = User.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        context = {
+            'user': user,
+            'form': EditDataForm(instance=user)
+        }
+        return render(request, 'auth/edit_profile.html', context)
+    else:
+
+        form = EditDataForm(request.POST, instance=user)
+        if form.is_valid():
+            if form.cleaned_data['username']:
+                user.username = form.cleaned_data['username']
+
+            if form.cleaned_data['email']:
+                user.email = form.cleaned_data['email']
+
+            if form.cleaned_data['first_name']:
+                user.first_name = form.cleaned_data['first_name']
+
+            if form.cleaned_data['last_name']:
+                user.last_name = form.cleaned_data['last_name']
+
+            user.save()
+
+            return redirect('view profile', pk)
+        context = {
+            'user': user,
+            'form': form,
+        }
+        return render(request, 'auth/edit_profile.html', context)

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile View
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/view_profile.css' %}">
+{% endblock %}
+
+{% block site_content %}
+    <div class="container">
+        <i class="fas fa-user" style="font-size: 200px;"></i>
+
+        <ul class="content">
+            <li>
+                Username: <p>{{ user.username }}</p>
+            </li>
+            <li>
+                Email: <p>{{ user.email }}</p>
+            </li>
+
+            {% if user.first_name %}
+                <li>
+                    First Name: <p>{{ user.first_name }}</p>
+                </li>
+            {% endif %}
+            {% if user.last_name %}
+                <li>
+                    Last Name: <p>{{ user.last_name }}</p>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

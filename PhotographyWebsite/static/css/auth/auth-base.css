@@ -1,0 +1,82 @@
+:root {
+    --container-bg: #333;
+    --pic-bg: #292929;
+    --pic-button-hover: rgba(161, 11, 11, 0.3);
+    --hover-width: 75%;
+    --other-width: 25%;
+    --speed: 1000ms;
+}
+
+
+.background:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: var(--pic-bg);
+    opacity: 20%;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .spacer {
+        max-width: 1200px;
+    }
+}
+
+.form {
+    padding: 40px;
+}
+
+.form form {
+    padding-top: 20px;
+}
+
+.form h1 {
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #222;
+    font-family: Poppins, serif;
+    font-size: 36px;
+}
+
+.primary {
+    display: inline-block;
+    background: #6dabe4;
+    color: #fff;
+    border-bottom: none;
+    width: auto;
+    padding: 15px 39px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    cursor: pointer;
+}
+
+.secondary {
+    font-family: Poppins, serif;
+    font-size: 1rem;
+    font-weight: 400;
+    padding-top: 15px;
+
+}
+
+.buttons {
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+a:hover{
+    color: #6dabe4;
+    opacity: 100%;
+}

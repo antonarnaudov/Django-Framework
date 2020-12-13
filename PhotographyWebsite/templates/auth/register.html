@@ -1,22 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'auth/auth-base.html' %}
 {% load bootstrap4 %}
+{% load static %}
 
-{% block site_content %}
-    <h1 class="text-center">Register</h1>
+{% block title %}
+    Register
+{% endblock %}
 
-    <div class="row d-flex justify-content-center">
-        <form action="{% url 'register user' %}" method=POST enctype="multipart/form-data">
-            <input type="hidden" name="return_url" value="{{ request.GET.next }}">
-            {% csrf_token %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/register.css' %}">
+{% endblock %}
 
-            {% for field in user_form %}
-                {% bootstrap_field field %}
-            {% endfor %}
+{% block form %}
+    <h1>Register</h1>
 
-            {% buttons %}
-                <button class="btn btn-primary">Register</button>
-                <p>or <a href="{% url 'login user' %}?next={{ request.GET.next }}">login</a></p>
-            {% endbuttons %}
-        </form>
-    </div>
+    <form action="{% url 'register user' %}" method=POST enctype="multipart/form-data">
+        <input type="hidden" name="return_url" value="{{ request.GET.next }}">
+        {% csrf_token %}
+
+        {% for field in user_form %}
+            {% bootstrap_field field %}
+        {% endfor %}
+
+        <div class="buttons">
+            <button class="btn primary">Register</button>
+            <p style="padding-top: 15px;">or</p>
+            <a href="{% url 'login user' %}?next={{ request.GET.next }}" class="secondary"
+               style="text-decoration: underline;">Already have an account</a>
+        </div>
+
+    </form>
 {% endblock %}

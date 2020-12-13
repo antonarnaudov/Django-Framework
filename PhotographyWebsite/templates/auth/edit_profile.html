@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+    Profile View
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/edit_profile.css' %}">
+{% endblock %}
+
+{% block site_content %}
+    <div class="container">
+        <i class="fas fa-user" style="font-size: 200px;"></i>
+
+        <form action="{% url 'edit profile' user.id %}" method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+
+            <div class="button">
+                <button class="btn primary">Edit Profile</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
