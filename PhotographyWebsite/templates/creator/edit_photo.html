@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
-{% load static%}
+{% load static %}
+{% load bootstrap4%}
 
 {% block title %}Edit Photo{% endblock %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/edit_profile.css' %}">
 {% endblock %}
 
 {% block site_content %}
-    <form action="{% url 'edit-photo' photo.id %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button>Edit</button>
-    </form>
+    <div class="container" style="height: 585px">
+        <i class="fas fa-image" style="font-size: 200px;"></i>
+
+        <form action="{% url 'edit-photo' photo.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+
+            <div class="button">
+                <button class="btn primary">Edit Photo</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/category.js' %}"></script>
+
 {% endblock %}
+
+
+

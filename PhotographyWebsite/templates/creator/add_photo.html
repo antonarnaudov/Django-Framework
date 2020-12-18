@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap4%}
 
 {% block title %}Add Photo{% endblock %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/edit_profile.css' %}">
 {% endblock %}
 
 {% block site_content %}
-    <form action="{% url 'add-photo' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    <div class="container" style="height: 585px">
+        <i class="fas fa-image" style="font-size: 200px;"></i>
 
-        <label for="original_photo">{{ form.original_photo.label }}</label>
-        {{ form.original_photo }}
+        <form action="{% url 'add-photo' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <label for="name">{{ form.name.label }}</label>
-        {{ form.name }}
+            {% for field in form %}
+                {% bootstrap_field field %}
+            {% endfor %}
 
-        <label for="category">{{ form.category.label }}</label>
-        {{ form.category }}
-
-        <label for="price">{{ form.price.label }}</label>
-        {{ form.price }}
-
-        <button>Add</button>
-    </form>
+            <div class="button">
+                <button class="btn primary">Add Photo</button>
+            </div>
+        </form>
+    </div>
 
     <script src="{% static 'js/category.js' %}"></script>
 

@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from Photos.forms.photos_form import PhotosForm
 from Photos.models.photos_model import Photos
 from Photos.models.wishes_model import Wishes
-from common_functionality.get_redirect_url import get_redirect_url
+from Photos.views.views import get_category_photos
 from common_functionality.path_functions import clean_files_from_path
 
 
@@ -53,14 +54,30 @@ def delete_photo(request, pk):
 
 @login_required
 def wish_photo(request, pk):
-    redirect_url = get_redirect_url(request.POST)
     wish = Wishes.objects.filter(user_id=request.user.id, photo_id=pk).first()
+    photo = Photos.objects.get(pk=pk)
 
     if wish:
         wish.delete()
+        photo.is_wished = False
     else:
-        photo = Photos.objects.get(pk=pk)
         wish = Wishes(user=request.user)
         wish.photo = photo
+        photo.is_wished = True
         wish.save()
-    return redirect(redirect_url)
+
+    return get_category_photos(request, photo.category.category, photo.category.id)
+
+    # photo = {
+    #     'id': photo.id,
+    #     'watermarked_photo': photo.watermarked_photo.url,
+    #     'category': photo.category.category,
+    #     'name': photo.name,
+    #     'price': photo.price,
+    #     'is_wished': photo.is_wished
+    # }
+
+    # data = {
+    #     'photo': photo
+    # }
+    # return JsonResponse(data)

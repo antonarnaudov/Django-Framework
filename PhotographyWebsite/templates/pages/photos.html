@@ -23,11 +23,16 @@
                         <li><p class="price">{{ photo.price }}$</p></li>
 
                         {% if user.groups.all.0.name == 'Creator' %}
-                            <li><a href="{% url 'edit-photo' photo.id %}">Edit</a></li>
+                            <li><a href="{% url 'edit-photo' photo.id %}"><i class="fas fa-edit"
+                                                                             style="font-size:25px; color:purple; cursor: pointer;"></i></a>
+                            </li>
 
-                            <li><a href="{% url 'delete-photo' photo.id %}">Delete</a></li>
+                            <li><a href="{% url 'delete-photo' photo.id %}"><i class="fas fa-trash-alt"
+                                                                               style="font-size:25px; color:red; cursor: pointer;"></i></a>
+                            </li>
 
-                            <li><i class="fas fa-heart" style="font-size:30px; cursor: pointer;"></i> {{ photo.wishes_set.count }}</li>
+                            <li><i class="fas fa-heart"
+                                   style="font-size:30px; cursor: pointer;"></i> {{ photo.wishes_set.count }}</li>
                         {% else %}
                             <li>
                                 {% if photo.is_wished %}
@@ -53,6 +58,22 @@
         {% else %}
             <h1>This category is EMPTY</h1>
         {% endif %}
-
     </div>
+
 {% endblock %}
+
+{#{% block jquery %}#}
+{#    <script>#}
+{#        function wish(photo) {#}
+{#            if (photo) {#}
+{#                $.ajax({#}
+{#                    url: "{% url 'photos' %}",#}
+{#                    data: {#}
+{#                        'photo': photo#}
+{#                    },#}
+{#                    dataType: 'json',#}
+{#                })#}
+{#            }#}
+{#        }#}
+{#    </script>#}
+{#{% endblock %}#}

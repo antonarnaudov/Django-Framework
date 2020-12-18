@@ -22,10 +22,10 @@
                     </div>
                 </a>
                 {% if user.groups.all.0.name == 'Creator' %}
-                    <a href="{% url 'edit-category' category.id %}" id="edit-category"><i class="fas fa-edit"
-                                                                                          style="font-size:25px; color:purple; cursor: pointer;"></i></a>
-                    <a href="{% url 'delete-category' category.id %}" id="delete-category"><i class="fas fa-trash-alt"
-                                                                                              style="font-size:25px; color:red; cursor: pointer;"></i></a>
+                    <div class="editor-buttons">
+                        <a href="{% url 'edit-category' category.id %}">Edit</a>
+                        <a href="{% url 'delete-category' category.id %}">Delete</a>
+                    </div>
                 {% endif %}
             </div>
         {% endfor %}

@@ -1,25 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block title %}
     Edit Category
 {% endblock %}
 
-{% block site_content %}
-<div class="popup-background">
-    <div class="popup-window">
-        <div class="close" style="cursor: pointer;">
-            <i class="far fa-times-circle" style="font-size: 40px;"></i>
-        </div>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/edit_profile.css' %}">
+{% endblock %}
 
-        <form action="{% url 'edit-category' category.id %}" method="post" enctype="multipart/form-data">
+{% block site_content %}
+    <div class="container">
+        <i class="fas fa-folder-open" style="font-size: 200px;"></i>
+
+            <form action="{% url 'edit-category' category.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="image">{{ form.image.label }}</label>
-            {{ form.image }}
-            <label for="category">{{ form.category.label }}</label>
-            {{ form.category }}
-            <button>Edit</button>
+
+            {% for field in form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+
+            <div class="button">
+                <button class="btn primary">Edit Category</button>
+            </div>
         </form>
     </div>
-</div>
 {% endblock %}

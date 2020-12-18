@@ -2,9 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 10px 30px;
-    /*justify-content: space-between;*/
     justify-content: center;
-
 }
 
 .image {
@@ -24,4 +22,10 @@
     font-family: Archivo Black, serif;
     text-align: center;
     padding: 50px;
+}
+
+.price {
+    font-family: Poppins, serif;
+    font-weight: 500;
+    font-size: 22px;
 }
