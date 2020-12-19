@@ -11,10 +11,13 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-.image img {
-    width: 1109px;
+.image {
+    width: 80%;
 }
+.image img {
+    width: 100%;
+}
+
 .image .navbar {
     padding-bottom: 35px;
 }

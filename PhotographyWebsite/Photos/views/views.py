@@ -14,11 +14,17 @@ def work(request):
 
 def get_category_photos(request, category, fk):
     photos = Photos.objects.filter(category_id=fk)
+
     for photo in photos:
         if photo.wishes_set.filter(user_id=request.user.id).exists():
             photo.is_wished = True
         else:
             photo.is_wished = False
+
+        if photo.shoppingcart_set.filter(user_id=request.user.id).exists():
+            photo.is_added_to_cart = True
+        else:
+            photo.is_added_to_cart = False
 
     context = {
         'photos': photos,
@@ -32,6 +38,18 @@ def get_wishlist(request):
         'wishlist': request.user.wishes_set.all(),
     }
     return render(request, 'user/wishlist.html', context)
+
+
+def get_cart(request):
+    cart = request.user.shoppingcart_set.all()
+    cart.sum = 0
+    for item in cart:
+        cart.sum += item.photo.price
+
+    context = {
+        'cart': cart
+    }
+    return render(request, 'user/shopping_cart.html', context)
 
 
 def get_public_file(request, path_to_file):

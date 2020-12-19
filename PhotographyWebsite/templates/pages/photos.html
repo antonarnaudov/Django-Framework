@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Work
+    Photos
 {% endblock %}
 
 {% block styles %}
@@ -35,21 +35,26 @@
                                    style="font-size:30px; cursor: pointer;"></i> {{ photo.wishes_set.count }}</li>
                         {% else %}
                             <li>
-                                {% if photo.is_wished %}
-                                    <a href="{% url 'wish' photo.id %}">
+                                <a href="{% url 'wish' photo.id %}">
+                                    {% if photo.is_wished %}
                                         <i class="fas fa-heart" style="font-size:30px; cursor: pointer;"></i>
-                                    </a>
-                                {% else %}
-                                    <a href="{% url 'wish' photo.id %}">
+                                    {% else %}
                                         <i class="far fa-heart" style="font-size:30px; cursor: pointer;"></i>
-                                    </a>
-                                {% endif %}
+                                    {% endif %}
+                                </a>
                             </li>
 
 
-                            <li><a href="#"><i class="fas fa-cart-plus"
-                                               style="font-size:30px; cursor: pointer;"></i></a>
+                            <li>
+                                <a href="{% url 'add to cart' photo.id %}">
+                                    {% if photo.is_added_to_cart %}
+                                        <i class="fas fa-shopping-cart" style="font-size:30px; cursor: pointer;"></i>
+                                    {% else %}
+                                        <i class="fas fa-cart-plus" style="font-size:30px; cursor: pointer;"></i>
+                                    {% endif %}
+                                </a>
                             </li>
+
                         {% endif %}
                     </ul>
                 </div>
