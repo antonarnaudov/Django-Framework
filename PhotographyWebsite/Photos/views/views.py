@@ -58,3 +58,15 @@ def get_public_file(request, path_to_file):
 
 def get_private_file(request, path_to_file):
     return get_public_or_private_files(request, path_to_file, 'private')
+
+
+def get_bought_items(request):
+    cart = request.user.shoppingcart_set.all()
+
+    context = {
+        'cart': cart
+    }
+    # for item in cart:
+    #     item.delete()
+
+    return render(request, 'user/bought_items.html', context)
