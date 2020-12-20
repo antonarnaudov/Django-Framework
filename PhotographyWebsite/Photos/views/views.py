@@ -70,3 +70,11 @@ def get_bought_items(request):
     #     item.delete()
 
     return render(request, 'user/bought_items.html', context)
+
+
+def get_about_us_page(request):
+    return render(request, 'pages/about.html')
+
+
+def get_contact_us_page(request):
+    return render(request, 'pages/contact.html')

@@ -3,7 +3,7 @@ from django.urls import path
 from Photos.views.category_view import add_category, edit_category, delete_category
 from Photos.views.photos_view import add_photo, edit_photo, delete_photo, wish_photo, add_to_cart
 from Photos.views.views import work, get_public_file, get_private_file, get_category_photos, get_wishlist, get_cart, \
-    get_bought_items
+    get_bought_items, get_about_us_page, get_contact_us_page
 
 urlpatterns = [
     # Home page:
@@ -29,5 +29,8 @@ urlpatterns = [
     # ShoppingCart:
     path('add_to_cart/<int:pk>/', add_to_cart, name='add to cart'),
     path('cart/', get_cart, name='cart page'),
-    path('downolad_items/', get_bought_items, name='download items')
+    path('downolad_items/', get_bought_items, name='download items'),
+
+    path('about/', get_about_us_page, name='about us'),
+    path('contact/', get_contact_us_page, name='contact us')
 ]

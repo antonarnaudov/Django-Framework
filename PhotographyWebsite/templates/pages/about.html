@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    About Us
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/auth/view_profile.css' %}">
+{% endblock %}
+
+{% block site_content %}
+    <div class="container">
+        <i class="fas fa-address-card" style="font-size: 200px;"></i>
+
+        <ul class="content">
+            <li>
+                <p>
+                    A photophile is someone who is absolutely passionate about photography. They live, breath and dream
+                    about photography and of course they never leave home without their camera! Photography is way more
+                    than
+                    just a passing trend or hobby for a photophile because they know that they’ll never stop taking
+                    photos
+                    and couldn’t live without a camera!</p>
+            </li>
+            <li>
+                <p>This website was created for people who can call themselves a photophile and for people who
+                    support photography by having something that sits on the wall at home and inspires them every
+                    day.</p>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
