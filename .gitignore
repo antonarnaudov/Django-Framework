@@ -132,3 +132,13 @@ dmypy.json
 .idea
 .idea/
 /.idea/
+.idea/.gitignore
+.idea/dataSources.local.xml
+.idea/inspectionProfiles
+.idea/dataSources
+.idea/dataSources.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/workspace.xml
+.idea/Photography-Website.iml
+.idea/vcs.xml
