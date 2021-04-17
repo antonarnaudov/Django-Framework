@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{% static 'css/work.css' %}">
 {% endblock %}
 
+{% block scripts %}
+    <script href="{% static 'js/work.js' %}" ></script>
+{% endblock %}
+
 {% block site_content %}
     <div class="display-container">
         {% for category in categories %}
