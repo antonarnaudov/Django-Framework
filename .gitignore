@@ -132,3 +132,9 @@ dmypy.json
 .idea/*
 /.idea/*
 ./.idea/*
+
+media/private/original_photos/*
+
+media/public/category_photos/*
+
+media/public/photos/*
