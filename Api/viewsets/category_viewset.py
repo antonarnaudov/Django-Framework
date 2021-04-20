@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -18,16 +18,14 @@ from Photos.models.category_model import Category
 
 
 # get current page number from offset + 1
-
-class CategoryPagination(LimitOffsetPagination):
-    default_limit = 1
-    max_limit = 100
+from common_functionality.pagination_classes import CursorPaginationSettings
 
 
 class CategoryListApiView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     # filter_fields = ('id', )
     search_fields = ('category',)
-    pagination_class = CategoryPagination
+    ordering = 'category'
+    pagination_class = CursorPaginationSettings

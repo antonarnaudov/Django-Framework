@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'bootstrap4',
     'rest_framework',
+    'django_filters',
 
     'Photos',
     'Auth'
@@ -83,7 +84,7 @@ DATABASES = {
         'NAME': 'PhotographyWebsite_db',
         'USER': 'postgres',
         'PASSWORD': 'toni1o00',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -132,3 +133,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media/')
 
 LOGIN_URL = '/auth/login'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+    # Setting default pagination class that will appear on every list-view
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    # 'PAGE_SIZE': 5,
+}
