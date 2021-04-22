@@ -2,7 +2,7 @@ from rest_framework.pagination import CursorPagination, LimitOffsetPagination
 
 
 class CursorPaginationSettings(CursorPagination):
-    page_size = 1
+    page_size = 3
 
 
 class LimitOffsetPaginationSettings(LimitOffsetPagination):

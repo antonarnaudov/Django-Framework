@@ -11,22 +11,20 @@ from Photos.models.photos_model import Photos
 from Photos.models.wishes_model import Wishes
 from common_functionality.pagination_classes import CursorPaginationSettings
 
-# TODO: Fix Pagination
+# TODO: Fix Ordering Fields
 
 
 class WishesListApiView(ListAPIView):
-    queryset = Wishes.objects.all()
+    # queryset = Wishes.objects.all()
     serializer_class = WishesSerializer
-
-    def get(self, request, *args, **kwargs):
-        wishes = Wishes.objects.filter(user=request.user)
-        serializer = WishesSerializer(wishes, many=True)
-
-        return Response(serializer.data)
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     # filter_fields = ('price', )
-    search_fields = ('name',)
-    ordering_fields = ('price',)
-    ordering = 'photo'
+    search_fields = ('photo__name',)
+    # ordering_fields = ['photo__price']  # photos because of the model name
+    ordering = 'photo_id'
     pagination_class = CursorPaginationSettings
+
+    def get_queryset(self):
+        queryset = Wishes.objects.filter(user=self.request.user)
+        return queryset
