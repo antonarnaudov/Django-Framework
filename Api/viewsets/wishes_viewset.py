@@ -1,3 +1,5 @@
+from django.core.exceptions import FieldDoesNotExist
+from django.db.models import ForeignObjectRel, OneToOneRel
 from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -11,17 +13,16 @@ from Photos.models.photos_model import Photos
 from Photos.models.wishes_model import Wishes
 from common_functionality.pagination_classes import CursorPaginationSettings
 
-# TODO: Fix Ordering Fields
+# NOTE: ordering_fields does NOT support nested fields
 
 
 class WishesListApiView(ListAPIView):
-    # queryset = Wishes.objects.all()
     serializer_class = WishesSerializer
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
-    # filter_fields = ('price', )
+
     search_fields = ('photo__name',)
-    # ordering_fields = ['photo__price']  # photos because of the model name
+    ordering_fields = ''
     ordering = 'photo_id'
     pagination_class = CursorPaginationSettings
 
