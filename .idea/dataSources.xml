@@ -7,5 +7,14 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://192.168.48.1:5432/PhotographyWebsite_db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="e3afc857-6674-4df9-8c9c-6c3f46e5622c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/PhotographyWebsite/settings.py</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://192.168.100.251:5432/PhotographyWebsite_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

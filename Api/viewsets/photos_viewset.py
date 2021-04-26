@@ -1,25 +1,39 @@
-import django_filters
-from rest_framework.generics import ListAPIView
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.pagination import LimitOffsetPagination, CursorPagination
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
-from Api.serializers.photos_serializer import PhotosSerializer
+from Api.serializers.photos_serializer import GetPhotosSerializer, PostPhotoSerializer, PutPhotoSerializer
 from Photos.models.photos_model import Photos
 from common_functionality.custom_filter_classes import PhotosFilter
 from common_functionality.pagination_classes import CursorPaginationSettings
 
 
-class PhotosListApiView(ListAPIView):
+class PhotosViewSet(ModelViewSet):
+    """
+    ViewSet supporting all operations for Photos.
+    """
     queryset = Photos.objects.all()
-    serializer_class = PhotosSerializer
+
+    serializers = {
+        'get': GetPhotosSerializer,
+        'post': PostPhotoSerializer,
+        'put': PutPhotoSerializer
+    }
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+
     filter_class = PhotosFilter
-    # filter_fields = ('price', )
+    pagination_class = CursorPaginationSettings
+
     search_fields = ('name',)
     ordering_fields = ('price',)
     ordering = 'price'
-    pagination_class = CursorPaginationSettings
+
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return self.serializers['get']
+
+        elif self.action == 'update':
+            return self.serializers['put']
+
+        return self.serializers['post']

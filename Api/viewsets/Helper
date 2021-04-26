@@ -1,0 +1,35 @@
+Overriding list method to get additional filter functionality
+
+def list(self, request, *args, **kwargs):
+  queryset = self.filter_queryset(self.get_queryset().filter(price__lte=100))
+
+  page = self.paginate_queryset(queryset)
+
+  if page is not None:
+      serializer = self.get_serializer(page, many=True)
+      return self.get_paginated_response(serializer.data)
+
+  serializer = self.get_serializer(queryset, many=True)
+      return Response(serializer.data)
+
+
+def retrieve(self, request, pk=None):
+    queryset = Photos.objects.all()
+    photo = get_object_or_404(queryset, pk=pk)
+    serializer = PhotosSerializer(photo)
+    return Response(serializer.data)
+
+
+def create(self, request, *args, **kwargs):
+    serializer = self.get_serializer()
+    return super().create(request, *args, **kwargs)
+
+
+def update(self, request, pk=None):
+    pass
+
+def partial_update(self, request, pk=None):
+    pass
+
+def destroy(self, request, pk=None):
+    pass
