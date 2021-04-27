@@ -33,3 +33,7 @@ def partial_update(self, request, pk=None):
 
 def destroy(self, request, pk=None):
     pass
+
+
+To make fields not required in Serializers
+extra_kwargs = {'image': {'required': False}}
