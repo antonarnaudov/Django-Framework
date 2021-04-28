@@ -1,23 +1,19 @@
-from django.core.exceptions import FieldDoesNotExist
-from django.db.models import ForeignObjectRel, OneToOneRel
-from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from Api.serializers.category_serializer import CategorySerializer
-from Api.serializers.wishes_serializer import WishesSerializer
-from Photos.models.photos_model import Photos
+from rest_framework.viewsets import ModelViewSet
+from Api.serializers.wishes_serializer import CreateWishesSerializer, ShowWishesSerializer
 from Photos.models.wishes_model import Wishes
+from common_functionality.mixins import SerializerRequestSwitchMixin
 from common_functionality.pagination_classes import CursorPaginationSettings
 
 # NOTE: ordering_fields does NOT support nested fields
 
 
-class WishesListApiView(ListAPIView):
-    serializer_class = WishesSerializer
+class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
+    serializers = {
+        'show': ShowWishesSerializer,
+        'create': CreateWishesSerializer
+    }
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 

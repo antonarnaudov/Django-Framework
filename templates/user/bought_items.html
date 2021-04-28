@@ -38,10 +38,9 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="{% url 'private file' photo.photo.original_photo.url %}"
+                                                <a download="{{ photo.photo.name }}.jpg" href="{% url 'private file' photo.photo.original_photo.url %}"
                                                    class="btn primary btn-block"
                                                 >Download Photo</a>
-
                                             </div>
                                         </div>
                                     </div>

@@ -37,3 +37,5 @@ def destroy(self, request, pk=None):
 
 To make fields not required in Serializers
 extra_kwargs = {'image': {'required': False}}
+
+# NOTE: ordering_fields does NOT support nested fields
