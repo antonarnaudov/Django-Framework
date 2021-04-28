@@ -6,9 +6,6 @@ from Photos.models.wishes_model import Wishes
 
 
 class ShowWishesSerializer(serializers.ModelSerializer):
-    """
-
-    """
     # check the user serializers
     user = UserSimpleSerializer()
     photo = ShowPhotosSerializer()

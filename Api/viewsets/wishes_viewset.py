@@ -4,12 +4,14 @@ from rest_framework.viewsets import ModelViewSet
 from Api.serializers.wishes_serializer import CreateWishesSerializer, ShowWishesSerializer
 from Photos.models.wishes_model import Wishes
 from common_functionality.mixins import SerializerRequestSwitchMixin
-from common_functionality.pagination_classes import CursorPaginationSettings
 
 # NOTE: ordering_fields does NOT support nested fields
 
 
 class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
+    """
+    ViewSet supporting all operations for Wishes.
+    """
     serializers = {
         'show': ShowWishesSerializer,
         'create': CreateWishesSerializer
@@ -20,7 +22,6 @@ class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     search_fields = ('photo__name',)
     ordering_fields = ''
     ordering = 'photo_id'
-    pagination_class = CursorPaginationSettings
 
     def get_queryset(self):
         queryset = Wishes.objects.filter(user=self.request.user)

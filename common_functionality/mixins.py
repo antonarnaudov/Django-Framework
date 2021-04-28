@@ -1,5 +1,6 @@
 class SerializerRequestSwitchMixin(object):
     """
+    show is the default serializer
     serializers = {
         'show': ShowSerializer,
         'create': CreateSerializer,
@@ -11,13 +12,16 @@ class SerializerRequestSwitchMixin(object):
     serializers = {}
 
     def get_serializer_class(self):
-        if self.action in ['list', 'retrieve']:
-            if 'detailed' in self.serializers.keys():
-                return self.serializers['detailed']
+        if self.action == 'retrieve' \
+                and 'detailed' in self.serializers.keys():
+            return self.serializers['detailed']
 
-            return self.serializers['show']
-
-        elif self.action == 'update':
+        elif self.action in ['update', 'partial_update'] \
+                and 'update' in self.serializers.keys():
             return self.serializers['update']
 
-        return self.serializers['create']
+        elif self.action == 'create' \
+                and 'create' in self.serializers.keys():
+            return self.serializers['create']
+
+        return self.serializers['show']

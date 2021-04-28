@@ -6,7 +6,6 @@ from Api.serializers.photos_serializer import ShowPhotosSerializer, CreatePhotoS
 from Photos.models.photos_model import Photos
 from common_functionality.custom_filter_classes import PhotosFilter
 from common_functionality.mixins import SerializerRequestSwitchMixin
-from common_functionality.pagination_classes import CursorPaginationSettings
 
 
 class PhotosViewSet(SerializerRequestSwitchMixin, ModelViewSet):
@@ -24,7 +23,6 @@ class PhotosViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     filter_class = PhotosFilter
-    pagination_class = CursorPaginationSettings
 
     search_fields = ('name',)
     ordering_fields = ('price',)

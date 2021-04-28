@@ -1,24 +1,42 @@
-from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-
-from Api.serializers.shopping_cart_serializer import ShoppingCartSerializer
+from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import ModelViewSet
+from Api.serializers.shopping_cart_serializer import AddToShoppingCartSerializer, ShowShoppingCartSerializer, \
+    ShowBoughtItemsSerializer
 from Photos.models.shopping_cart import ShoppingCart
-from common_functionality.pagination_classes import CursorPaginationSettings
-
+from common_functionality.mixins import SerializerRequestSwitchMixin
 
 # NOTE: ordering_fields does NOT support nested fields
 
 
-class ShoppingCartListApiView(ListAPIView):
-    serializer_class = ShoppingCartSerializer
+class ShoppingCartViewSet(SerializerRequestSwitchMixin, ModelViewSet):
+    """
+    ViewSet supporting all operations for ShoppingCart.
+    """
+    serializers = {
+        'show': ShowShoppingCartSerializer,
+        'create': AddToShoppingCartSerializer,
+        'update': AddToShoppingCartSerializer,
+    }
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     search_fields = ('photo__name',)
     ordering_fields = ''
     ordering = 'photo_id'
-    pagination_class = CursorPaginationSettings
+
+    def get_queryset(self):
+        queryset = ShoppingCart.objects.filter(user=self.request.user)
+        return queryset
+
+
+class BoughtItemsListAPIView(ListAPIView):
+    """
+    APIListView returns all information for paid photos.
+    """
+    serializer_class = ShowBoughtItemsSerializer
+    pagination_class = None
 
     def get_queryset(self):
         queryset = ShoppingCart.objects.filter(user=self.request.user)
