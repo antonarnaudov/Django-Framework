@@ -24,5 +24,8 @@ class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     ordering = 'photo_id'
 
     def get_queryset(self):
+        """
+        Filtering for the current User
+        """
         queryset = Wishes.objects.filter(user=self.request.user)
         return queryset

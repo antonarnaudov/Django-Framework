@@ -27,6 +27,7 @@ class CreatePhotoSerializer(serializers.ModelSerializer):
 
     Suitable for creating new photos
     """
+
     class Meta:
         model = Photos
         exclude = ('watermarked_photo',)
@@ -39,6 +40,7 @@ class UpdatePhotoSerializer(serializers.ModelSerializer):
 
     Suitable for editing and updating Photo.
     """
+
     class Meta:
         model = Photos
         exclude = ('watermarked_photo',)
@@ -59,3 +61,12 @@ class SellPhotosSerializer(serializers.ModelSerializer):
         model = Photos
         fields = '__all__'
         depth = 1
+
+
+class ShowPhotosForWishesSerializer(serializers.ModelSerializer):
+    """
+    Shows Public Photos data required for Wishes page.
+    """
+    class Meta:
+        model = Photos
+        exclude = ('category', 'original_photo')
