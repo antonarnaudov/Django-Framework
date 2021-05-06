@@ -9,8 +9,8 @@ urlpatterns = [
     # Home page:
     path('', work, name='work page'),
     path('<str:category>/<int:fk>/photos', get_category_photos, name='category photos'),
-    path('resources_public/<path:path_to_file>/', get_public_file, name='public file'),
-    path('resources_private/<path:path_to_file>/', get_private_file, name='private file'),
+    path('resources_public<path:path_to_file>/', get_public_file, name='public file'),
+    path('resources_private<path:path_to_file>/', get_private_file, name='private file'),
 
     # Category operations pages:
     path('category/add/', add_category, name='add-category'),

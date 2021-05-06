@@ -25,8 +25,6 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-media_files = static(settings.MEDIA_URL, document_root=join(settings.MEDIA_ROOT, 'public'))
-
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -40,16 +38,17 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
-urlpatterns = [
-
-]
+media_files = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = [
-      path('admin/', admin.site.urls),
-      path('', include('Photos.urls')),
-      path('auth/', include('Auth.urls')),
-      path('api/', include('Api.urls')),
-      url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-      url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-      url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    ] + media_files
+                  path('admin/', admin.site.urls),
+                  path('', include('Photos.urls')),
+                  path('auth/', include('Auth.urls')),
+                  path('api/', include('Api.urls')),
+
+                  # Swagger
+                  url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
+                      name='schema-json'),
+                  url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+                  url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+              ] + media_files
