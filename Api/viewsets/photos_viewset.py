@@ -8,7 +8,6 @@ from common_functionality.custom_filter_classes import PhotosFilter
 from common_functionality.mixins import SerializerRequestSwitchMixin
 
 
-# @parser_classes((FormParser, MultiPartParser))
 class PhotosViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     """
     ViewSet supporting all operations for Photos.
