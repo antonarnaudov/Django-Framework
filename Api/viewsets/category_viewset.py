@@ -7,6 +7,7 @@ from Photos.models.category_model import Category
 from common_functionality.mixins import SerializerRequestSwitchMixin
 
 
+# @parser_classes((FormParser,))
 class CategoryViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     """
     ViewSet supporting all operations for Category.

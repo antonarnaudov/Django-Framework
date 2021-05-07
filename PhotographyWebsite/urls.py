@@ -27,7 +27,7 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="Photophile API Documentation",
         default_version='v1',
         description="Test description",
         terms_of_service="https://www.google.com/policies/terms/",
@@ -41,14 +41,16 @@ schema_view = get_schema_view(
 media_files = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('', include('Photos.urls')),
-                  path('auth/', include('Auth.urls')),
-                  path('api/', include('Api.urls')),
+      path('admin/', admin.site.urls),
+      path('', include('Photos.urls')),
+      path('auth/', include('Auth.urls')),
+      path('api/', include('Api.urls')),
 
-                  # Swagger
-                  url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
-                      name='schema-json'),
-                  url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-                  url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-              ] + media_files
+      # Swagger
+      path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+      path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+      url(r'^swagger(?P<format>\.json|\.yaml)$',
+          schema_view.without_ui(cache_timeout=0), name='schema-json'),
+
+  ] + media_files

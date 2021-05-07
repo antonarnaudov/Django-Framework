@@ -35,3 +35,6 @@ class Photos(models.Model):
         self.watermarked_photo.save(file_name, ContentFile(image), save=False)
 
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name

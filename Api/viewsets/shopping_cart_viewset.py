@@ -7,8 +7,8 @@ from Api.serializers.shopping_cart_serializer import AddToShoppingCartSerializer
 from Photos.models.shopping_cart import ShoppingCart
 from common_functionality.mixins import SerializerRequestSwitchMixin
 
-# NOTE: ordering_fields does NOT support nested fields
 
+# NOTE: ordering_fields does NOT support nested fields
 
 class ShoppingCartViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     """

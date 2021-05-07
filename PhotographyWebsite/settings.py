@@ -143,4 +143,8 @@ REST_FRAMEWORK = {
     # Setting default pagination class that will appear on every list-view
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
     'PAGE_SIZE': 3,
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ]
 }

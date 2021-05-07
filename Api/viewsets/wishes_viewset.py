@@ -5,8 +5,8 @@ from Api.serializers.wishes_serializer import CreateWishesSerializer, ShowWishes
 from Photos.models.wishes_model import Wishes
 from common_functionality.mixins import SerializerRequestSwitchMixin
 
-# NOTE: ordering_fields does NOT support nested fields
 
+# NOTE: ordering_fields does NOT support nested fields
 
 class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     """
@@ -14,7 +14,8 @@ class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     """
     serializers = {
         'show': ShowWishesSerializer,
-        'create': CreateWishesSerializer
+        'create': CreateWishesSerializer,
+        'update': CreateWishesSerializer
     }
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)

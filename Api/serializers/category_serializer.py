@@ -1,5 +1,6 @@
-from drf_yasg import openapi
 from rest_framework import serializers
+
+
 from Photos.models.category_model import Category
 
 
