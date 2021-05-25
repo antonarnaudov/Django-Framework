@@ -14,8 +14,8 @@ class ShowWishesSerializer(serializers.ModelSerializer):
 
     Suitable for getting all data for the Wishes.
     """
-    user = UserSimpleSerializer()
-    photo = ShowPhotosForWishesSerializer()
+    user = UserSimpleSerializer(help_text='user serializer')
+    photo = ShowPhotosForWishesSerializer(help_text='photo serializer')
 
     class Meta:
         model = Wishes

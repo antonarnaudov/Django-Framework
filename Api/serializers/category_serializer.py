@@ -1,3 +1,4 @@
+from drf_yasg import openapi
 from rest_framework import serializers
 
 
@@ -16,23 +17,23 @@ class ShowCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class EmailMessageField(serializers.JSONField):
-#     class Meta:
-#         swagger_schema_fields = {
-#             "type": openapi.TYPE_OBJECT,
-#             "title": "Required",
-#             "properties": {
-#                 "category": openapi.Schema(
-#                     title="Category name",
-#                     type=openapi.TYPE_STRING,
-#                 ),
-#                 "image": openapi.Schema(
-#                     title="Category image",
-#                     type=openapi.TYPE_FILE,
-#                 ),
-#             },
-#             "required": ["category", "image"],
-#         }
+class CategoryMessageField(serializers.JSONField):
+    class Meta:
+        swagger_schema_fields = {
+            "type": openapi.TYPE_OBJECT,
+            "title": "Required",
+            "properties": {
+                "category": openapi.Schema(
+                    title="Category name",
+                    type=openapi.TYPE_STRING,
+                ),
+                "image": openapi.Schema(
+                    title="Category image",
+                    type=openapi.TYPE_FILE,
+                ),
+            },
+            "required": ["category", "image"],
+        }
 
 
 class UpdateCategorySerializer(serializers.ModelSerializer):
@@ -48,7 +49,7 @@ class UpdateCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
         extra_kwargs = {'image': {'required': False}}
 
-    # message = EmailMessageField()
+    message = CategoryMessageField()
 
 
 class SimpleCategorySerializer(serializers.ModelSerializer):

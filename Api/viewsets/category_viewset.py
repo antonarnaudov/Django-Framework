@@ -7,7 +7,6 @@ from Photos.models.category_model import Category
 from common_functionality.mixins import SerializerRequestSwitchMixin
 
 
-# @parser_classes((FormParser,))
 class CategoryViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     """
     ViewSet supporting all operations for Category.
@@ -20,4 +19,5 @@ class CategoryViewSet(SerializerRequestSwitchMixin, ModelViewSet):
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     search_fields = ('category',)
+    ordering_fields = ''
     ordering = 'category'

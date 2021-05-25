@@ -15,7 +15,8 @@ class WishesViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     serializers = {
         'show': ShowWishesSerializer,
         'create': CreateWishesSerializer,
-        'update': CreateWishesSerializer
+        'update': CreateWishesSerializer,
+        'detailed': CreateWishesSerializer,
     }
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)

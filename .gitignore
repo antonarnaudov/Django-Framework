@@ -138,3 +138,6 @@ media/private/original_photos/*
 media/public/category_photos/*
 
 media/public/photos/*
+
+node_modules
+node_modules/*

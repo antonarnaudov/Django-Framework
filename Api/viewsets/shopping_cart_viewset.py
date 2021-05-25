@@ -18,6 +18,8 @@ class ShoppingCartViewSet(SerializerRequestSwitchMixin, ModelViewSet):
         'show': ShowShoppingCartSerializer,
         'create': AddToShoppingCartSerializer,
         'update': AddToShoppingCartSerializer,
+        'detailed': AddToShoppingCartSerializer,
+
     }
 
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -39,5 +41,8 @@ class BoughtItemsListAPIView(ListAPIView):
     pagination_class = None
 
     def get_queryset(self):
+        """
+        Filtering for the current User
+        """
         queryset = ShoppingCart.objects.filter(user=self.request.user)
         return queryset

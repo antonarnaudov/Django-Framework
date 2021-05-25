@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="PhotographyWebsite_db@192.168.48.1" uuid="fdb363d1-20ca-4323-8b4e-2cc8984581d9">
+    <data-source source="LOCAL" name="PhotographyWebsite_db@192.168.100.251" uuid="fdb363d1-20ca-4323-8b4e-2cc8984581d9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://192.168.48.1:5432/PhotographyWebsite_db</jdbc-url>
+      <jdbc-url>jdbc:postgresql://192.168.100.251:5432/PhotographyWebsite_db</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="Django default" uuid="e3afc857-6674-4df9-8c9c-6c3f46e5622c">
       <driver-ref>postgresql</driver-ref>

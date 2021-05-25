@@ -25,7 +25,7 @@ SECRET_KEY = 'x&4x9@x^m_hzvwa2)80z3q=kg@3@k%nw*g+h1feq1qe04shfb2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -140,13 +140,18 @@ LOGIN_URL = '/auth/login'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+
     # Setting default pagination class that will appear on every list-view
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
     'PAGE_SIZE': 3,
 
     # Parser is used for Swagger adding serializer fields in autogen documentation
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.FormParser',
-        'rest_framework.parsers.MultiPartParser'
-    ]
+    # 'DEFAULT_PARSER_CLASSES': [
+    # 'rest_framework.parsers.FormParser',
+    # 'rest_framework.parsers.MultiPartParser'
+    # ]
 }

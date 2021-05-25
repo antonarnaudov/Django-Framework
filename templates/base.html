@@ -25,8 +25,6 @@
     {% block styles %}
     {% endblock %}
 
-    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-
     {#    //Path to jQuery#}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -46,6 +44,7 @@
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
 
+
     {% block scripts %}
     {% endblock %}
 
@@ -53,8 +52,11 @@
 <body>
 {% include 'partials/navigation_bar.html' %}
 
-{% block site_content %}
-{% endblock %}
+<main>
+    {% block site_content %}
+    {% endblock %}
+</main>
+
 
 {% block jquery %}
 {% endblock %}
