@@ -10,4 +10,4 @@ class PhotosFilter(FilterSet):
 
     class Meta:
         model = Photos
-        fields = ['min_price', 'max_price']
+        fields = ['min_price', 'max_price', 'category']

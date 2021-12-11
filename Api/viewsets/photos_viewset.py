@@ -23,7 +23,6 @@ class PhotosViewSet(SerializerRequestSwitchMixin, ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     filter_class = PhotosFilter
-
     search_fields = ('name',)
     ordering_fields = ('price',)
     ordering = 'price'
