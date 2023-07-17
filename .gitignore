@@ -141,3 +141,4 @@ media/public/photos/*
 
 node_modules
 node_modules/*
+.env
